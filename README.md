@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## About
+
+Esse é um projeto desenvolvido para o processo seletivo NextJs/React para a empresa Pedido Pago. Trata-se de um painel de controle de funcionarios, cargos e permissões de uma empresa desenvolvido em NextJs.
+
 ## Getting Started
 
 First, run the development server:
