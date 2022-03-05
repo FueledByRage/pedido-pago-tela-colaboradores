@@ -3,10 +3,13 @@ import { FiChevronDown, FiChevronUp, FiFile } from 'react-icons/fi';
 import { ActionsButton } from '../EmployeesMobile/components';
 import { Column, MobileContainerRoles, RowleMobile } from "./components";
 import { ShowMoreButton } from '../EmployeesMobile/components';
+import { IconContext } from 'react-icons';
+import { ModalAction } from '../ModalAction/ModalActions';
 
 export default function RolesMobile({ role }){
 
     const [ show, setShow ] = useState(false);
+    const [ modal, setModal ] = useState(false);
 
     return(
         <MobileContainerRoles show={show}>
@@ -24,8 +27,10 @@ export default function RolesMobile({ role }){
                         </>
                     }
                 </Column>
-                <ShowMoreButton onClick={()=>{setShow(!show)}} >
-                    { show ? <FiChevronUp /> : <FiChevronDown />}
+                <ShowMoreButton show={show} onClick={()=>{setShow(!show)}} >
+                    <IconContext.Provider value={{size: '20px'}}>
+                        { show ? <FiChevronUp /> : <FiChevronDown />}
+                    </IconContext.Provider>
                 </ShowMoreButton>
             </RowleMobile>
             {
@@ -38,7 +43,7 @@ export default function RolesMobile({ role }){
                             </Column>
                         </RowleMobile>
                         <RowleMobile>
-                            <ActionsButton>
+                            <ActionsButton onClick={() =>setModal(true)}>
                                 <FiFile />
                                 <span>
                                     Ações
@@ -48,6 +53,10 @@ export default function RolesMobile({ role }){
                     </> :
                     null
                 }
+
+            <ModalAction on={modal} closeModal={setModal} type={'cargo'} id={'1'} />
+
+
         </MobileContainerRoles>
     );
 }

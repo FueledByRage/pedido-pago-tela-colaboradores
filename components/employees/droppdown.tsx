@@ -2,6 +2,7 @@ import { DropButton, DropDownContainer, DropMenu, DropOption } from "../DropDown
 import { FiMoreVertical, FiEye, FiTrash2 } from 'react-icons/fi';
 import router from "next/router";
 import { useRef, useState } from "react";
+import { IconContext } from "react-icons";
 
 export function DropDownButton({ employeeId }){
 
@@ -21,7 +22,9 @@ export function DropDownButton({ employeeId }){
     return(
         <DropDownContainer ref={container}>
             <DropButton onClick={show} >
-                <FiMoreVertical />
+                <IconContext.Provider value={{size: '20px'}} >
+                    <FiMoreVertical />
+                </IconContext.Provider>
             </DropButton>
 
             {

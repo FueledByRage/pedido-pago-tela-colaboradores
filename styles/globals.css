@@ -13,10 +13,25 @@ a {
 }
 .title{
   font-size: 16px;
+  color: #34423D;
+  font-weight: bold;
+  margin-left: 16px;
+}
+.title-big{
+  font-size: 32px;
   margin-left: 16px;
   color: #34423D;
   font-weight: bold;
 }
+
+.title-table{
+  font-size: 16px;
+  margin-left: 9vh;
+  align-self: start;
+  color: #34423D;
+  font-weight: bold;
+}
+
 
 * {
   box-sizing: border-box;

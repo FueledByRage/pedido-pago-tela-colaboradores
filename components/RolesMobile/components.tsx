@@ -5,7 +5,7 @@ type MobileContainer = {
 }
 
 export const MobileContainerRoles = styled('div')<MobileContainer>`
-    width: 95vw;
+    width: 80%;
     background-color: #FFFFFF;
     display: flex;
     padding: 10px;

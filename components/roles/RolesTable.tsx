@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 
 export const TableHead = styled.div`
-    width:90vw;
+    width:95%;
+    align-self: center;
     border: 2px solid #A3B8B0;
     border-radius: 10px 10px 0px 0px;
     display: flex;
@@ -12,7 +13,7 @@ export const TableHead = styled.div`
 export const TableRow = styled.div`
     border-top: 2px solid #EAEFED;
     border-bottom: 2px solid #EAEFED;
-    width: 90vw;
+    width: 95%;
     display: flex;
     flex-direction: row;
     `;

@@ -2,9 +2,10 @@ import { DropButton, DropDownContainer, DropMenu, DropOption } from "../DropDown
 import { FiMoreVertical, FiEye, FiTrash2, FiEdit, FiRepeat } from 'react-icons/fi';
 import router from "next/router";
 import { useRef, useState } from "react";
+import { IconContext } from "react-icons";
 
 
-export function DropDownButtonRoles( roleId: string ){
+export function DropDownButtonRoles(){
 
     const [ showMenu, setShowMenu ] = useState(false);
     const container = useRef(null);
@@ -22,13 +23,15 @@ export function DropDownButtonRoles( roleId: string ){
     return(
         <DropDownContainer ref={container}>
             <DropButton onClick={show} >
-                <FiMoreVertical />
+                <IconContext.Provider value={{size: '20px'}} >
+                    <FiMoreVertical />
+                </IconContext.Provider>
             </DropButton>
 
             {
                 showMenu ? <DropMenu> 
                     <DropOption disabled={false} onClick={()=>{
-                        router.push({pathname: '/cargo', query:{}})
+                        router.push({pathname: '/cargo', query:{roleId: 1}})
                     }}> 
                         <FiEye />
                         <span>

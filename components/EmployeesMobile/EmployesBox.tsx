@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Icon, StatusCell } from "../EmployeesTable/TableBody";
 import { ActionsButton, Container, ContainerColumn, ContainerRow, ShowMoreButton } from "./components";
-import { ModalCategory } from "./ModalCategories";
+import { ModalAction } from "../ModalAction/ModalActions";
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { IconContext } from "react-icons";
 
 
 export function ColaboradorBox( { colaborador } ){
 
     const [ showMore, setShow ] = useState(false);
+    const [ modal, setModal ] = useState(false);
 
     return(
         <Container show={showMore}>
@@ -20,8 +22,10 @@ export function ColaboradorBox( { colaborador } ){
                             {  colaborador.name } 
                         </span>
                     </ContainerRow>
-                    <ShowMoreButton onClick={()=>{setShow(!showMore)}} >
-                        { showMore ? <FiChevronUp /> : <FiChevronDown />}
+                    <ShowMoreButton show={showMore} onClick={()=>{setShow(!showMore)}} >
+                        <IconContext.Provider value={{size: '20px'}}>
+                            { showMore ? <FiChevronUp /> : <FiChevronDown />}
+                        </IconContext.Provider>
                     </ShowMoreButton>
                 </ContainerRow>
             </ContainerColumn>
@@ -61,10 +65,11 @@ export function ColaboradorBox( { colaborador } ){
                         </ContainerColumn>
                     </ContainerRow>
                     <ContainerRow>
-                        <ActionsButton>
+                        <ActionsButton onClick={() => setModal(true)}>
                             Ações
                         </ActionsButton>
                     </ContainerRow>
+                    <ModalAction on={modal} closeModal={setModal} type={'colaborador'} id={colaborador.agent_id} />
                 </>
             }
 

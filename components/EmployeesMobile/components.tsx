@@ -5,6 +5,21 @@ type ContainerProps = {
     show: boolean
 }
 
+type ButtonProps ={
+    show: boolean
+};
+
+const showAnimation = keyframes`
+    0%{
+        transform: rotate(60deg);
+    }
+`;
+const closeAnimation = keyframes`
+    0%{
+        transform: rotate(-60deg);
+    }
+`;
+
 const animation = keyframes`
     from{
         margin-bottom: -30vh;
@@ -15,7 +30,7 @@ const animation = keyframes`
 `;
 
 export const Container = styled('div')<ContainerProps>`
-    width: 95vw;
+    width: 80%;
     background-color: #FFFFFF;
     display: flex;
     padding: 10px;
@@ -119,11 +134,12 @@ export const Categories = styled.div`
 
 `;
 
-export const ShowMoreButton = styled.button`
+export const ShowMoreButton = styled('button')<ButtonProps>`
     border: none;
     background-color: transparent;
     width: 25px;
     height: 25px;
+    animation: ${ButtonProps => ButtonProps.show ? showAnimation : closeAnimation} .5s;
 `;
 
 export const LoadMoreButton = styled.button`
@@ -149,6 +165,12 @@ export const LoadMoreButton = styled.button`
 export const Categorie = styled.div`
     display: flex;
     align-text: center;
+    align-items: center;
     width: 100%;
     padding: 10px;
+    font-weight: bold;
+    span{
+        margin-left: 15px;
+        
+    }
 `;

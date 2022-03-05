@@ -1,4 +1,4 @@
-import { Categorie, Categories, ContainerColumn, ContainerRow, Modal } from "./components";
+import { Categorie, Categories, ContainerRow, Modal } from "./components";
 import { FiX } from 'react-icons/fi';
 
 export function ModalCategory({ on, closeModal, OptionFunction }){
@@ -9,6 +9,7 @@ export function ModalCategory({ on, closeModal, OptionFunction }){
 
     return(
         <Modal onClick={()=>closeModal(false)} >
+            
             <Categories>
                 <ContainerRow>
                     <span className="title">Categorias</span>

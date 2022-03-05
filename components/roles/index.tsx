@@ -25,13 +25,17 @@ export default function RoleComponent({ roles, width, modal, closeModal, ModalFu
     const [ lastPage, setLastPage ] = useState(false);
     const [ lastPageMobile, setLastPageMobile ] = useState(false);
     const [ pageMobile, setPageMobile ] = useState(1);
+    const [ currentData, setCurrent ] = useState([]);
 
 
     useEffect(()=>{
-        const isLastPageMobile = (modal['items'].length -1 )< ((pageMobile * 6 ) + 1);
-        setLastPage(roles['roles'].slice((page + 1) * 10).length == 0);
-        setLastPageMobile(isLastPageMobile);
-    },[page]);
+        setCurrent(roles['roles'].slice((registers * page), ((page + 1 ) * registers)));
+        const isLastPage = roles['roles'].slice((registers * (page + 1))).length == 0; 
+        const isLastPageMobile = (roles['roles'].length -1 ) < ((pageMobile * 6 ) + 1);
+        if(isLastPage != lastPage) setLastPage(isLastPage);
+        if(isLastPageMobile != lastPageMobile) setLastPageMobile(isLastPageMobile);
+    },[page, pageMobile]);
+
 
     return(
         <>
@@ -56,23 +60,26 @@ export default function RoleComponent({ roles, width, modal, closeModal, ModalFu
                         </thead>
                         <tbody>
                             {
-                                roles['roles'].slice((registers * page), ((page + 1 ) * registers)).map((role : role, index: number)=>{
+                                currentData.map((role : role, index: number)=>{
                                     return <tr key={index} >
                                         <TableCell>{role.name}</TableCell>
                                         <TableCell>{role.departament}</TableCell>
                                         <TableCell>{role.agents_quantity}</TableCell>
-                                        <TableCell> <DropDownButtonRoles /> </TableCell>
+                                        <TableCell> <DropDownButtonRoles  /> </TableCell>
                                     </tr>
                                 })
                             }
                         </tbody>
                     </StyledTable>
                     <SelectRegistersContainer>
+                    <div></div>
                     <NavigateButtons> 
                         <NavigateButton off={page == 0} onClick={()=>{setPage(page - 1)}} disabled={page == 0} next={false} >
                             <FiChevronLeft />
                         </NavigateButton> 
-                            {`${Math.floor(roles['roles'].length / registers)} de ${registers}`}
+
+                            {`${(page +1)} de ${Math.ceil(roles['roles'].length / registers)}`}
+
                         <NavigateButton off={lastPage} onClick={()=> setPage(page + 1)} disabled={lastPage} next={true} >
                             <FiChevronRight />
                         </NavigateButton>
@@ -80,7 +87,7 @@ export default function RoleComponent({ roles, width, modal, closeModal, ModalFu
                 </SelectRegistersContainer>
                 </> :
                 <MobileBox>
-                    <p className="title">Lista de colaboradores</p>
+                    <p className="title-table">Lista de cargos</p>
                     {
                         roles['roles'].slice(0, 6).map((role : role, index: number)=>{
                             return <RolesMobile key={index} role = {role}></RolesMobile>

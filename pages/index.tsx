@@ -24,37 +24,39 @@ export default function colaboradores({error, results, roles, message}){
     }
 
     function filterOption(option: string): void{
+        if(!data.includes(option)) return
         setOption(option);
     }
 
     return(
         <>
-            <p className="title">Organização</p>
-            <Container>
-                {           
-                    width > 768 ? <Options options={data} selected={option} click={filterOption} /> : 
-                    <MobileOptionsBox onClick={()=>{
-                        setModal(true);
-                    }}>
-                        { option }
-                        <span>
-                            <FiMoreVertical />
-                        </span>
-                    </MobileOptionsBox>
-                }
-                {
-                    option == 'Colaboradores' ? <ColaboradoresComponent 
-                    modal={modal} 
-                    results={results} 
-                    width={width} 
-                    closeModal={setModal}
-                    ModalFunction={setOption}
-                    /> : <RoleComponent modal={modal} closeModal={setModal} ModalFunction={setOption} roles={roles} width={width}/>
-                    
-                }
+            <p className="title-big" >Organização</p>
+            <Container>                
+                    {           
+                        width > 768 ? <Options options={data} selected={option} click={filterOption} /> : 
+                        <MobileOptionsBox onClick={()=>{
+                            setModal(true);
+                        }}>
+                            { option }
+                            <span>
+                                <FiMoreVertical />
+                            </span>
+                        </MobileOptionsBox>
+                    }
+                    {
+                        option == 'Colaboradores' ? <ColaboradoresComponent 
+                        modal={modal} 
+                        results={results} 
+                        width={width} 
+                        closeModal={setModal}
+                        ModalFunction={setOption}
+                        /> : <RoleComponent modal={modal} closeModal={setModal} ModalFunction={setOption} roles={roles} width={width}/>
+                        
+                    }
 
+                
+            
             </Container>
-        
         </>
     );
 }

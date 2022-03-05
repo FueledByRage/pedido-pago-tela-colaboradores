@@ -3,6 +3,7 @@ import { TableRow, TableCell, TableHead } from "../components/roles/RolesTable";
 import { FiArrowLeft } from 'react-icons/fi';
 import api from './api/axios';
 import { useEffect } from "react";
+import { IconContext } from "react-icons";
 
 type permission = {
     role: string,
@@ -24,10 +25,14 @@ export default function Roles({ error, role, message }){
     return(
         <>
             <Container>
-                <p className="title"> <FiArrowLeft />  Cargos e permissões</p>
+                <div className="title-box">
+                    <IconContext.Provider value={{size: '30px'}} >
+                        <FiArrowLeft />
+                    </IconContext.Provider>
+                  <p className="title-big">  Cargos e permissões</p>
+                </div >
                 <RolesContainer>
                     <p className="title">Dados do Cargo</p>
-                    
                     <RoleDataSection>
                         <RoleDataContainer>
                             <label>
@@ -43,7 +48,7 @@ export default function Roles({ error, role, message }){
                         </RoleDataContainer>
                     </RoleDataSection>
                     <p className="title">Listagem de permissões</p>
-                    <div>
+                    <div className="table">
                             <TableHead>
                                 <TableCell>Cargo</TableCell>
                                 <TableCell>Ler</TableCell>

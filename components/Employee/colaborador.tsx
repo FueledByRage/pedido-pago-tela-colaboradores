@@ -1,9 +1,31 @@
 import styled from '@emotion/styled';
 
+export const EmployeePageContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10vh;
+
+    .title-box{
+        display: flex;
+        align-content: center;
+        align-items: center;
+        padding-left: 20px;
+    }
+`;
+
+
 export const EmployeeBox = styled.div`
     display: flex;
     flex-direction: column;
     background-color: #FFFFFF;
+    align-self: center;
+    width: 90vw;
+    .info-title{
+        margin-left:5vw;
+        font-size: 27px;
+        color: #34423D;
+        font-weight: bold;
+    }
 `;
 
 export const Column = styled.div`
@@ -51,7 +73,6 @@ export const Column = styled.div`
 export const Row = styled.div`
     display: flex;
     flex-direction: row;
-    background-color: #FFFFFF;
     padding: 50px;
     align-items: center;
     @media(max-width: 768px){
@@ -147,12 +168,11 @@ export const IconUser = styled.div`
 
 export const ContainerInputs = styled.div`
     padding: 10px;
-    position: relative;
-    width: 90vw;
+
+    width: 90%;    
     align-self: center;
     border-radius: 10px;
     border: 2px solid #CAD6D1;
-    background-color: #FFFFFF;
     p{
         font-weight: 600;
         font-size: 18px;
@@ -178,8 +198,8 @@ export const SelectInput = styled.select`
 `
 export const InputBox = styled.div`
     position: relative;
-    width: 100%;
-    height: 56px;
+    width: 90%;
+    
     label{
         background-color: white;
         color: #A3B8B0;

@@ -7,12 +7,19 @@ type CheckBox = {
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    
+    padding: 20px;
+    .title-box{
+        display: flex;
+        align-content: center;
+        align-items: center;
+        padding-left: 20px;
+    }
 `;
 
 export const RolesContainer = styled.div`
-    width: 100vw;
-
+    width: 90vw;
+    padding: 10px;
+    align-self: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,6 +28,10 @@ export const RolesContainer = styled.div`
     background-color: #FFFFFF;
     p{
         align-self: start;
+    }
+    .table{
+        width: 100%;
+        padding: 10px;
     }
 `;
 
@@ -33,9 +44,11 @@ export const StyledCheckbox = styled('input')<CheckBox>`
 `;
 
 export const RoleDataSection = styled.div`
+    padding: 10px;
     display: flex;
     flex-direction: row;
-    width: 95vw;
+    width: 90vw;
+    margin-left: 10px;
     align-items: center;
 
     @media(max-width: 768px){

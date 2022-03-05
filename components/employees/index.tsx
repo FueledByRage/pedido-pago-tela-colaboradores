@@ -9,6 +9,8 @@ import { ColaboradorBox } from "../EmployeesMobile/EmployesBox";
 import { LoadMoreButton, MobileBox } from "../EmployeesMobile/components";
 import { ModalCategory } from "../EmployeesMobile/ModalCategories";
 import { DropDownButton } from "./droppdown";
+import { IconContext } from "react-icons";
+import { ModalAction } from "../ModalAction/ModalActions";
 
 export default function ColaboradoresComponent({ results, width, modal, closeModal, ModalFunction }){
 
@@ -27,14 +29,16 @@ export default function ColaboradoresComponent({ results, width, modal, closeMod
     const [ lastPageMobile, setLastPageMobile ] = useState(false);
     const [ lastPage, setLastPage ] = useState(false);
     const [ pageMobile, setPageMobile ] = useState(1);
+    const [ currentData, setCurrent ] = useState([]);
+
 
     useEffect(()=>{
-        const isLastPage = results['items'].slice((registers * page), ((page + 2) * registers)).length > 0; 
+        setCurrent(results['items'].slice((registers * page), ((page + 1 ) * registers)));
+        const isLastPage = results['items'].slice((registers * (page + 1))).length == 0; 
         const isLastPageMobile = (results['items'].length -1 )< ((pageMobile * 6 ) + 1);
-        setLastPageMobile(isLastPageMobile);
-        setLastPage(isLastPage);
-
-    }, [pageMobile]);
+        if(isLastPage != lastPage) setLastPage(isLastPage);
+        if(isLastPageMobile != lastPageMobile)setLastPageMobile(isLastPageMobile);
+    }, [pageMobile, page, registers]);
 
 
     return(
@@ -63,7 +67,7 @@ export default function ColaboradoresComponent({ results, width, modal, closeMod
                         </thead>
                         <tbody>
                             {
-                                results['items'].slice((registers * page), ((page + 1) * registers)).map((result: result, index: number) => {
+                                currentData.map((result: result, index: number) => {
                                     return <tr key={index}>
                                         <TableCell>
                                             <div className="icon-div">
@@ -81,10 +85,11 @@ export default function ColaboradoresComponent({ results, width, modal, closeMod
                                     </tr>;
                             })}
                         </tbody>
-                    </StyledTable><SelectRegistersContainer>
+                    </StyledTable>
+                    <SelectRegistersContainer>
                             <SelectRegistersContainer>
                                 {` Mostrando ${registers} de ${results['items'].length} registros `}
-                                <select onClick={(e) => console.log(e)} defaultValue={10}>
+                                <select onChange={(e) => setRegister(parseInt(e.target.value))} defaultValue={10}>
                                     <option value='1'>1</option>
                                     <option value='2'>2</option>
                                     <option value='3'>3</option>
@@ -100,20 +105,26 @@ export default function ColaboradoresComponent({ results, width, modal, closeMod
                             <NavigateButtons>
 
                                 <NavigateButton off={page == 0} onClick={() => { setPage(page - 1); } } disabled={page == 0} next={false}>
-                                    <FiChevronLeft />
+                                    <IconContext.Provider value={{size: '20px'}}>
+                                        <FiChevronLeft />
+                                    </IconContext.Provider>
                                 </NavigateButton>
 
-                                {`${Math.floor(results['items'].length / registers)} de ${registers}`}
+                                {
+                                `${(page +1)} de ${Math.ceil(results['items'].length / registers)}`
+                                }
 
                                 <NavigateButton off={lastPage} onClick={() => setPage(page + 1)} disabled={lastPage} next={true}>
-                                    <FiChevronRight />
+                                    <IconContext.Provider value={{size: '20px'}}>
+                                        <FiChevronRight />
+                                    </IconContext.Provider>
                                 </NavigateButton>
                             </NavigateButtons>
                             
                         </SelectRegistersContainer></> 
                         :
             <MobileBox>
-                <p className="title">Lista de colaboradores</p>
+                <p className="title-table">Lista de colaboradores</p>
                 {
                     results['items'].slice(0,(6 * pageMobile)).map((colaborador: result, index: number)=>{
                         return(
