@@ -7,7 +7,7 @@ import { SelectRegistersContainer } from "../SelectRegisters";
 import { NavigateButtons, NavigateButton } from "../SelectRegisters";
 import RolesMobile from "../RolesMobile/RolesMobile";
 import { MobileBox } from "../EmployeesMobile/components";
-import { FiSearch } from 'react-icons/fi';
+import { FiSearch, FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { DropDownButtonRoles } from "./dropDownButtonRoles";
 import { ModalCategory } from "../EmployeesMobile/ModalCategories";
 import { LoadMoreButton } from "../EmployeesMobile/components";
@@ -70,11 +70,11 @@ export default function RoleComponent({ roles, width, modal, closeModal, ModalFu
                     <SelectRegistersContainer>
                     <NavigateButtons> 
                         <NavigateButton off={page == 0} onClick={()=>{setPage(page - 1)}} disabled={page == 0} next={false} >
-                            {'<'}
+                            <FiChevronLeft />
                         </NavigateButton> 
                             {`${Math.floor(roles['roles'].length / registers)} de ${registers}`}
                         <NavigateButton off={lastPage} onClick={()=> setPage(page + 1)} disabled={lastPage} next={true} >
-                            {'>'}
+                            <FiChevronRight />
                         </NavigateButton>
                     </NavigateButtons>
                 </SelectRegistersContainer>
@@ -86,7 +86,7 @@ export default function RoleComponent({ roles, width, modal, closeModal, ModalFu
                             return <RolesMobile key={index} role = {role}></RolesMobile>
                         })
                     }
-                    <LoadMoreButton disabled={lastPageMobile} onClick={()=> setPageMobile(pageMobile + 1)} > 
+                    <LoadMoreButton disabled={lastPageMobile} onClick={()=> setPageMobile(pageMobile + 1)} /> 
                     <ModalCategory on={modal} closeModal={closeModal} OptionFunction={ModalFunction} />
                 </MobileBox>
             }

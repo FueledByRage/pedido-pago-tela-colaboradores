@@ -1,10 +1,10 @@
 import { DropButton, DropDownContainer, DropMenu, DropOption } from "../DropDownButton/components";
 import { FiMoreVertical, FiEye, FiTrash2, FiEdit, FiRepeat } from 'react-icons/fi';
 import router from "next/router";
-import { MouseEventHandler, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 
-export function DropDownButtonRoles(){
+export function DropDownButtonRoles( roleId: string ){
 
     const [ showMenu, setShowMenu ] = useState(false);
     const container = useRef(null);
@@ -28,7 +28,7 @@ export function DropDownButtonRoles(){
             {
                 showMenu ? <DropMenu> 
                     <DropOption disabled={false} onClick={()=>{
-                        router.push('')
+                        router.push({pathname: '/cargo', query:{}})
                     }}> 
                         <FiEye />
                         <span>

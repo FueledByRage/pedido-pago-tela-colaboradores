@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 
-
+export const EmployeeBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+`;
 
 export const Column = styled.div`
     display: flex;

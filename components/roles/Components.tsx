@@ -4,6 +4,12 @@ type CheckBox = {
     marked: boolean
 }
 
+export const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    
+`;
+
 export const RolesContainer = styled.div`
     width: 100vw;
 

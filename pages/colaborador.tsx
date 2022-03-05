@@ -1,6 +1,7 @@
 import { CardInfo, Column, ContainerInputs, 
     IconInfo, IconUser, Row,
-    SelectInput, Cards, InputBox, InfoSection } from "../components/Employee/colaborador";
+    SelectInput, Cards, InputBox, 
+    InfoSection, EmployeeBox } from "../components/Employee/colaborador";
 import { FiUser, FiCalendar, FiPhoneCall, FiCreditCard } from 'react-icons/fi';
 import api  from './api/axios'
 import { useEffect } from "react";
@@ -16,7 +17,7 @@ export default function Colaborador({ erro, employee, message }){
     }
 
     return(
-        <Column>
+        <EmployeeBox>
             <InfoSection>
                 <IconUser>
                     <FiUser />
@@ -79,7 +80,7 @@ export default function Colaborador({ erro, employee, message }){
                     </InputBox>
                 </Row>
             </ContainerInputs>
-        </Column>
+        </EmployeeBox>
     );
 }
 
